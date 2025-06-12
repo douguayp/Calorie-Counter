@@ -86,7 +86,7 @@ export default function ResultPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
+    <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-md mx-auto space-y-6">
           {/* Header */}
@@ -100,17 +100,17 @@ export default function ResultPage() {
               <ArrowLeft className="h-4 w-4" />
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-green-700">Recognition Results</h1>
-              <p className="text-sm text-muted-foreground">
+              <h1 className="text-2xl font-bold text-gray-900">Recognition Results</h1>
+              <p className="text-sm text-gray-600">
                 Daily target: {dailyTarget} kcal
               </p>
             </div>
           </div>
 
           {/* Image Preview */}
-          <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl">
+          <Card className="backdrop-blur-sm bg-white border-0 shadow-2xl">
             <CardContent className="p-4">
-              <div className="relative aspect-video rounded-lg overflow-hidden bg-gray-100">
+              <div className="relative aspect-video rounded-2xl overflow-hidden bg-gray-100">
                 <Image
                   src={analyzedImage}
                   alt="Analyzed food"
@@ -122,12 +122,12 @@ export default function ResultPage() {
           </Card>
 
           {/* Calorie Summary */}
-          <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl">
+          <Card className="backdrop-blur-sm bg-white border-0 shadow-2xl">
             <CardHeader className="text-center">
               <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 ${
                 isOverTarget 
                   ? 'bg-gradient-to-r from-orange-500 to-red-500' 
-                  : 'bg-gradient-to-r from-green-500 to-blue-500'
+                  : 'bg-gradient-to-r from-emerald-500 to-green-500'
               }`}>
                 {isOverTarget ? (
                   <AlertTriangle className="h-8 w-8 text-white" />
@@ -135,10 +135,10 @@ export default function ResultPage() {
                   <CheckCircle className="h-8 w-8 text-white" />
                 )}
               </div>
-              <CardTitle className={isOverTarget ? 'text-orange-700' : 'text-green-700'}>
+              <CardTitle className={isOverTarget ? 'text-orange-700' : 'text-emerald-700'}>
                 Total Calorie Intake
               </CardTitle>
-              <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              <div className="text-4xl font-bold text-gray-900">
                 {totalCalories}
               </div>
               <CardDescription>kcal</CardDescription>
@@ -154,15 +154,15 @@ export default function ResultPage() {
                   className={`h-3 ${
                     isOverTarget 
                       ? '[&>div]:bg-gradient-to-r [&>div]:from-orange-500 [&>div]:to-red-500' 
-                      : '[&>div]:bg-gradient-to-r [&>div]:from-green-500 [&>div]:to-blue-500'
+                      : '[&>div]:bg-gradient-to-r [&>div]:from-emerald-500 [&>div]:to-green-500'
                   }`}
                 />
               </div>
               
-              <div className={`p-4 rounded-xl text-center ${
+              <div className={`p-4 rounded-2xl text-center ${
                 isOverTarget 
                   ? 'bg-orange-50 text-orange-700' 
-                  : 'bg-green-50 text-green-700'
+                  : 'bg-emerald-50 text-emerald-700'
               }`}>
                 {isOverTarget ? (
                   <p className="font-semibold">⚠️ Moderate Control Recommended</p>
@@ -180,44 +180,44 @@ export default function ResultPage() {
           </Card>
 
           {/* Food Items */}
-          <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl">
+          <Card className="backdrop-blur-sm bg-white border-0 shadow-2xl">
             <CardHeader>
-              <CardTitle className="flex items-center text-green-700">
+              <CardTitle className="flex items-center text-emerald-700">
                 <Utensils className="mr-2 h-5 w-5" />
                 Recognized Foods
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {foodResults.map((food, index) => (
-                <div key={index} className="border rounded-xl p-4 space-y-3">
+                <div key={index} className="border rounded-2xl p-4 space-y-3">
                   <div className="flex items-center justify-between">
                     <div>
                       <h3 className="font-semibold text-lg">{food.name}</h3>
-                      <p className="text-sm text-muted-foreground">{food.portion}</p>
+                      <p className="text-sm text-gray-600">{food.portion}</p>
                     </div>
                     <div className="text-right">
-                      <p className="text-2xl font-bold text-green-600">{food.calories}</p>
-                      <p className="text-sm text-muted-foreground">kcal</p>
+                      <p className="text-2xl font-bold text-emerald-600">{food.calories}</p>
+                      <p className="text-sm text-gray-600">kcal</p>
                     </div>
                   </div>
                   
                   <div className="flex items-center justify-between">
-                    <Badge variant="secondary" className="bg-green-100 text-green-700">
+                    <Badge variant="secondary" className="bg-emerald-100 text-emerald-700">
                       Confidence {food.confidence}%
                     </Badge>
                   </div>
 
                   <div className="grid grid-cols-3 gap-4 text-sm">
                     <div className="text-center">
-                      <p className="text-muted-foreground">Protein</p>
+                      <p className="text-gray-600">Protein</p>
                       <p className="font-semibold">{food.nutrients.protein}g</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-muted-foreground">Carbs</p>
+                      <p className="text-gray-600">Carbs</p>
                       <p className="font-semibold">{food.nutrients.carbs}g</p>
                     </div>
                     <div className="text-center">
-                      <p className="text-muted-foreground">Fat</p>
+                      <p className="text-gray-600">Fat</p>
                       <p className="font-semibold">{food.nutrients.fat}g</p>
                     </div>
                   </div>
@@ -227,26 +227,26 @@ export default function ResultPage() {
           </Card>
 
           {/* Nutrition Summary */}
-          <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl">
+          <Card className="backdrop-blur-sm bg-white border-0 shadow-2xl">
             <CardHeader>
-              <CardTitle className="flex items-center text-green-700">
+              <CardTitle className="flex items-center text-emerald-700">
                 <Target className="mr-2 h-5 w-5" />
                 Total Nutrition Summary
               </CardTitle>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-3 gap-4 text-center">
-                <div className="p-4 bg-blue-50 rounded-xl">
+                <div className="p-4 bg-blue-50 rounded-2xl">
                   <p className="text-sm text-blue-600 mb-1">Protein</p>
                   <p className="text-2xl font-bold text-blue-700">{totalNutrients.protein.toFixed(1)}</p>
                   <p className="text-sm text-blue-600">grams</p>
                 </div>
-                <div className="p-4 bg-green-50 rounded-xl">
-                  <p className="text-sm text-green-600 mb-1">Carbs</p>
-                  <p className="text-2xl font-bold text-green-700">{totalNutrients.carbs.toFixed(1)}</p>
-                  <p className="text-sm text-green-600">grams</p>
+                <div className="p-4 bg-emerald-50 rounded-2xl">
+                  <p className="text-sm text-emerald-600 mb-1">Carbs</p>
+                  <p className="text-2xl font-bold text-emerald-700">{totalNutrients.carbs.toFixed(1)}</p>
+                  <p className="text-sm text-emerald-600">grams</p>
                 </div>
-                <div className="p-4 bg-orange-50 rounded-xl">
+                <div className="p-4 bg-orange-50 rounded-2xl">
                   <p className="text-sm text-orange-600 mb-1">Fat</p>
                   <p className="text-2xl font-bold text-orange-700">{totalNutrients.fat.toFixed(1)}</p>
                   <p className="text-sm text-orange-600">grams</p>
@@ -259,7 +259,7 @@ export default function ResultPage() {
           <div className="space-y-3">
             <Button 
               onClick={() => router.push('/upload')}
-              className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-semibold py-6 text-lg rounded-xl"
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-6 text-lg rounded-2xl"
             >
               <Camera className="mr-2 h-5 w-5" />
               Take Another Photo
@@ -268,7 +268,7 @@ export default function ResultPage() {
             <Button 
               variant="outline"
               onClick={() => router.push('/')}
-              className="w-full border-2 border-green-200 hover:bg-green-50 text-green-700 font-semibold py-3 rounded-xl"
+              className="w-full border-2 border-emerald-200 hover:bg-emerald-50 text-emerald-700 font-semibold py-3 rounded-2xl"
             >
               Back to Home
             </Button>

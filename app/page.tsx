@@ -30,6 +30,7 @@ export default function SetupPage() {
   });
 
   const [isComplete, setIsComplete] = useState(false);
+  const [showSetup, setShowSetup] = useState(false);
 
   useEffect(() => {
     // Check if user data already exists
@@ -75,6 +76,7 @@ export default function SetupPage() {
     localStorage.setItem('userData', JSON.stringify(completeData));
     setUserData(completeData);
     setIsComplete(true);
+    setShowSetup(false);
   };
 
   const startUsing = () => {
@@ -83,28 +85,75 @@ export default function SetupPage() {
 
   const isFormValid = userData.gender && userData.age && userData.height && userData.weight && userData.activityLevel;
 
+  // Show welcome screen first
+  if (!showSetup && !isComplete) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex flex-col">
+        {/* Top Image Section */}
+        <div className="flex-1 bg-gradient-to-br from-emerald-600 to-green-700 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-t from-emerald-800/20 to-transparent"></div>
+          <div className="h-full flex items-center justify-center p-8">
+            <div className="text-white text-center">
+              <div className="text-6xl mb-4">🥗</div>
+              <div className="flex justify-center space-x-4 mb-4">
+                <span className="text-4xl">🥕</span>
+                <span className="text-4xl">🍎</span>
+                <span className="text-4xl">🥬</span>
+                <span className="text-4xl">🍊</span>
+              </div>
+              <div className="flex justify-center space-x-4">
+                <span className="text-3xl">🥦</span>
+                <span className="text-3xl">🍇</span>
+                <span className="text-3xl">🥝</span>
+                <span className="text-3xl">🍋</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Content Section */}
+        <div className="bg-white p-8 flex flex-col items-center">
+          <div className="max-w-sm text-center">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              Calorie Counter
+            </h1>
+            <p className="text-lg text-gray-600 mb-8">
+              Track your nutrition effortlessly with our AI-powered food recognition.
+            </p>
+            <Button 
+              onClick={() => setShowSetup(true)}
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-6 text-lg rounded-2xl shadow-lg"
+            >
+              Get Started
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (isComplete) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
+      <div className="min-h-screen bg-gray-50">
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-md mx-auto">
             <div className="text-center mb-8">
-              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <Camera className="h-8 w-8 text-white" />
               </div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold text-gray-900">
                 Calorie Counter
               </h1>
-              <p className="text-muted-foreground mt-2">Smart Food Calorie Recognition</p>
+              <p className="text-gray-600 mt-2">Smart Food Calorie Recognition</p>
             </div>
 
-            <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl">
+            <Card className="backdrop-blur-sm bg-white border-0 shadow-2xl">
               <CardHeader className="text-center">
-                <CardTitle className="text-green-700">Setup Complete!</CardTitle>
+                <CardTitle className="text-emerald-700">Setup Complete!</CardTitle>
                 <CardDescription>Your daily calorie target has been calculated</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl p-6 text-white text-center">
+                <div className="bg-gradient-to-r from-emerald-500 to-green-500 rounded-2xl p-6 text-white text-center">
                   <Target className="h-8 w-8 mx-auto mb-2" />
                   <p className="text-sm opacity-90">Daily Calorie Target</p>
                   <p className="text-3xl font-bold">{userData.dailyCalories}</p>
@@ -113,26 +162,26 @@ export default function SetupPage() {
 
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="text-center">
-                    <p className="text-muted-foreground">Gender</p>
+                    <p className="text-gray-600">Gender</p>
                     <p className="font-semibold">{userData.gender === 'male' ? 'Male' : 'Female'}</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-muted-foreground">Age</p>
+                    <p className="text-gray-600">Age</p>
                     <p className="font-semibold">{userData.age} years</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-muted-foreground">Height</p>
+                    <p className="text-gray-600">Height</p>
                     <p className="font-semibold">{userData.height}cm</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-muted-foreground">Weight</p>
+                    <p className="text-gray-600">Weight</p>
                     <p className="font-semibold">{userData.weight}kg</p>
                   </div>
                 </div>
 
                 <Button 
                   onClick={startUsing}
-                  className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-semibold py-6 text-lg rounded-xl"
+                  className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-6 text-lg rounded-2xl"
                 >
                   <Zap className="mr-2 h-5 w-5" />
                   Start Using
@@ -140,8 +189,11 @@ export default function SetupPage() {
 
                 <Button 
                   variant="ghost" 
-                  onClick={() => setIsComplete(false)}
-                  className="w-full text-muted-foreground"
+                  onClick={() => {
+                    setIsComplete(false);
+                    setShowSetup(true);
+                  }}
+                  className="w-full text-gray-500"
                 >
                   Reset Settings
                 </Button>
@@ -154,22 +206,29 @@ export default function SetupPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-blue-50 to-purple-50">
+    <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-md mx-auto">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <Button 
+              variant="ghost" 
+              onClick={() => setShowSetup(false)}
+              className="mb-4"
+            >
+              ← Back
+            </Button>
+            <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Calculator className="h-8 w-8 text-white" />
             </div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold text-gray-900">
               Calorie Counter
             </h1>
-            <p className="text-muted-foreground mt-2">Please set up your basic information first</p>
+            <p className="text-gray-600 mt-2">Please set up your basic information first</p>
           </div>
 
-          <Card className="backdrop-blur-sm bg-white/90 border-0 shadow-xl">
+          <Card className="backdrop-blur-sm bg-white border-0 shadow-2xl">
             <CardHeader>
-              <CardTitle className="text-green-700">Personal Information Setup</CardTitle>
+              <CardTitle className="text-emerald-700">Personal Information Setup</CardTitle>
               <CardDescription>
                 We will calculate your daily calorie needs based on your information
               </CardDescription>
@@ -248,7 +307,7 @@ export default function SetupPage() {
               <Button 
                 onClick={handleSubmit}
                 disabled={!isFormValid}
-                className="w-full bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 disabled:opacity-50 text-white font-semibold py-6 text-lg rounded-xl"
+                className="w-full bg-orange-500 hover:bg-orange-600 disabled:opacity-50 text-white font-semibold py-6 text-lg rounded-2xl"
               >
                 <Calculator className="mr-2 h-5 w-5" />
                 Calculate Daily Calories
