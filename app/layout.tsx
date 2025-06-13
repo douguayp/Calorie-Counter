@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Calorie Counter - Smart Food Calorie Recognition',
+  title: 'Count Your Calorie',
   description: 'Intelligently recognize food calories through photos to help you manage healthy eating',
 };
 
