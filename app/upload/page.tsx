@@ -87,7 +87,7 @@ export default function UploadPage() {
               <ArrowLeft className="h-4 w-4" />
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Photo Recognition</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Food Photo Recognition</h1>
               <p className="text-sm text-gray-600">
                 Daily target: {userData.dailyCalories} kcal
               </p>

@@ -115,7 +115,7 @@ export default function SetupPage() {
         <div className="bg-white p-8 flex flex-col items-center">
           <div className="max-w-sm text-center">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Calorie Counter
+              Food Calorie Calculator
             </h1>
             <p className="text-lg text-gray-600 mb-8">
               Track your nutrition effortlessly with our AI-powered food recognition.
@@ -142,7 +142,7 @@ export default function SetupPage() {
                 <Camera className="h-8 w-8 text-white" />
               </div>
               <h1 className="text-3xl font-bold text-gray-900">
-                Calorie Counter
+                Food Calorie Calculator
               </h1>
               <p className="text-gray-600 mt-2">Smart Food Calorie Recognition</p>
             </div>
@@ -221,7 +221,7 @@ export default function SetupPage() {
               <Calculator className="h-8 w-8 text-white" />
             </div>
             <h1 className="text-3xl font-bold text-gray-900">
-              Calorie Counter
+              Food Calorie Calculator
             </h1>
             <p className="text-gray-600 mt-2">Please set up your basic information first</p>
           </div>

@@ -100,7 +100,7 @@ export default function ResultPage() {
               <ArrowLeft className="h-4 w-4" />
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">Recognition Results</h1>
+              <h1 className="text-2xl font-bold text-gray-900">Food Analysis Results</h1>
               <p className="text-sm text-gray-600">
                 Daily target: {dailyTarget} kcal
               </p>
